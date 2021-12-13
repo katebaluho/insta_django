@@ -1,4 +1,2 @@
-<p>Im here</p>
-{% for itm in hashtags_in_post %}
-    <span><a href="">{{ itm }}</a></span>
-{% endfor %}
+
+<p class="safe">{{hashtags_in_post|safe}}</p>
