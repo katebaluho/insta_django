@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+
+{% block title %} Profile data {% endblock %}
+{% block content %}
+<div class="input-group mb-3">
+   {% if error %}
+        <div>Неверный логин или пароль</div>
+   {% endif %}
+   <form action="/sigin/" method="post" class="row g-3 needs-validation" novalidate >
+        {% csrf_token %}
+        {% bootstrap_form form=authorization_form %}
+        {% buttons %}
+        <button type="submit" class="btn btn-primary">
+            Войти
+        </button>
+       {% endbuttons %}
+   </form>
+</div>
+{% endblock content %}
