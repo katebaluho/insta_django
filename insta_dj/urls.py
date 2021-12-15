@@ -8,15 +8,16 @@ from drf_spectacular.views import SpectacularRedocView, SpectacularSwaggerView, 
 from account_app.views import registration_page, auth_page, profile_edit_page, profile_page
 from hashtag_app.api.views.hashtags import HashtagsView
 from publication_app.api.views.publications import PostsView
-from publication_app.views import main_page, create_post_page
-from publication_app.views import PostListView
+#from publication_app.views import create_post_page
+from publication_app.views import PostListView, PostCreateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', main_page, name = 'home'),
+   # path('', main_page, name = 'home'),
     path('', include('account_app.urls')),
-    path("create_post/", create_post_page, name = "create_post"),
-    path('posts/', PostListView.as_view()),
+    #path("create_post/", create_post_page, name = "create_post"),
+    path("create_post/", PostCreateView.as_view(success_url=''), name = "create_post"),
+    path('', PostListView.as_view(), name = 'home'),
 
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
