@@ -8,5 +8,5 @@ class Post(models.Model):
     title = models.CharField(max_length=256, unique=False, blank=False, null=False)
     text = models.TextField(blank=False, null=False)
     image = models.ImageField(null=True, blank=True)
-    author = models.ForeignKey(User, on_delete= models.CASCADE, related_name='posts', null=True)
+    user = models.ForeignKey(User, on_delete= models.CASCADE, related_name='posts', null=True)
 
