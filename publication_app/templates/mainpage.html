@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% load bootstrap5 %}
 {% bootstrap_css %}
-{% load hashtag_tags %}
 
 {% block title %} Insta django {% endblock %}
 {% block content %}
@@ -22,7 +21,7 @@
         <div class="card" style="width: 18rem;">
             <img class="card-img-top" src="{{post.image.url}}" alt="Card image cap" style="height: 180px; width: 100%; display: block;">
             <div class="card-body">
-                <p class="card-text"> {% hashtags_in_post post %} </p>
+                <p class="card-text"></p>
                 <p class="card-text">{{post.create_date}}</p>
             </div>
         </div>

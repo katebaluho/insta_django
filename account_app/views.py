@@ -40,8 +40,6 @@ def auth_page(request):
     return render(request, "authorization_form.html", context)
 
 
-#TODO: сделать render f.as_table
-#TODO: обработку ошибки ввода, выводть сообщение
 @login_required
 def profile_edit_page(request):
     if request.method == 'POST':

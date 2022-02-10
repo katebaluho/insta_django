@@ -33,7 +33,7 @@ class PostListView(ListView):
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    fields = ['image', 'title', 'text']
+    fields = ['media', 'title', 'text']
     template_name = 'create_post_form.html'
 
     def form_valid(self, form):
