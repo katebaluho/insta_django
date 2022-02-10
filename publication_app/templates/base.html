@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% load menu_tags %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+</head>
+<body>
+    <div id = "sidebar" style="padding:10px">
+        <div id="user">{% login_menu %}</div>
+        <div id="menu">{% menu %}</div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light"></nav>
+            <a href="{% url 'home' %}" class="navbar-brand">Home page</a>
+    </div>
+
+    <div id="content" class="container">
+        {% block content %}{% endblock %}
+    </div>
+
+</body>
+</html>

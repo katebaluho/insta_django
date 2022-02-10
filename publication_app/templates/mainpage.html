@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+
+{% block title %} Insta django {% endblock %}
+{% block content %}
+<div>
+    <form method="get" action="{% url 'create_post' %}">
+        {% csrf_token %}
+        {% buttons %}
+        <button type="submit" class="btn btn-primary">Create new post</button>
+        {% endbuttons %}
+    </form>
+</div>
+<div>
+    {% for post in posts %}
+    <div class="card border-secondary mb-3">
+        <h2> {{post.title}} </h2>
+        <h3>Author: {{post.user.username}} </h3>
+        {% if post.image %}
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="{{post.image.url}}" alt="Card image cap" style="height: 180px; width: 100%; display: block;">
+            <div class="card-body">
+                <p class="card-text"></p>
+                <p class="card-text">{{post.create_date}}</p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+{% endblock %}
