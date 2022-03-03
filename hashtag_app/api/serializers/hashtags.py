@@ -8,7 +8,7 @@ from ...models import Hashtag
 class HashtagSerializer(serializers.ModelSerializer):
     class Meta:
         model = Hashtag
-        exclude = ['posts', ]
+        exclude = ('posts',)
 
     posts_count = serializers.SerializerMethodField()
     followers_count = serializers.SerializerMethodField()
@@ -21,11 +21,11 @@ class HashtagSerializer(serializers.ModelSerializer):
         return instance.followers.count()
 
 
-class TagDetailSerializer(HashtagSerializer):
-
-    class Meta:
-        model = Hashtag
-        fields = ('id', 'hashtag_label', 'posts_count', 'followers_count' ,'posts')
+# class TagDetailSerializer(HashtagSerializer):
+#
+#     class Meta:
+#         model = Hashtag
+#         fields = ('id', 'hashtag_label', 'posts_count', 'followers_count' ,'posts')
 
 
 

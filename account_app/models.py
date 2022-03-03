@@ -6,12 +6,8 @@ from media_app.models import Media
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.PROTECT, null=False, related_name="profile")
-    avatar = models.ForeignKey(Media,
-                             on_delete=models.PROTECT,
-                             null=True, blank=True,
-                             related_name='profile'
-    )
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=False, related_name="profile")
+    avatar = models.ImageField(default='default.jpg')
     phone = models.CharField(
                             max_length=16,
                             validators=(

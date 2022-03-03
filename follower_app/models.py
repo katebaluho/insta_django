@@ -13,6 +13,9 @@ class Follower(models.Model):
         unique_together = (('follower', 'following'), )
         ordering = ['-create_date']
 
+    def __str__(self):
+        return f'follower{self.follower} to following {self.following}'
+
 
 class FollowingHashtag(models.Model):
     follower = models.ForeignKey(User, on_delete= models.CASCADE, related_name='follow_hashtags', null=False, blank=False) #'последователь'
@@ -22,3 +25,6 @@ class FollowingHashtag(models.Model):
     class Meta:
         unique_together = (('follower', 'follow_hashtag'), )
         ordering = ['-create_date']
+
+    def __str__(self):
+        return f'follower{self.follower} to following {self.follow_hashtag}'
