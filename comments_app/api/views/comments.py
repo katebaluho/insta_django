@@ -1,25 +1,23 @@
-from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework.generics import RetrieveUpdateDestroyAPIView
-from rest_framework.mixins import CreateModelMixin, ListModelMixin, UpdateModelMixin, DestroyModelMixin
+from rest_framework.mixins import UpdateModelMixin, DestroyModelMixin, CreateModelMixin
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.viewsets import GenericViewSet, ModelViewSet
+from rest_framework.viewsets import GenericViewSet
 
-from comments_app.api.serializers.comments import CommentSerializer, CommentDetailSerializer, CommentUpdateSerializer
+from comments_app.api.serializers.comments import CommentSerializer, CommentUpdateSerializer
 from comments_app.models import Comment
+from insta_dj.permissions import IsOwner
 
 
-class CommentView(ModelViewSet):
+class CommentCreateView(GenericViewSet, CreateModelMixin):
     permission_classes = [IsAuthenticated]
     serializer_class = CommentSerializer
     queryset = Comment.objects.all()
-    actions_serializers = {'retrieve': CommentDetailSerializer,
-                           'list': CommentDetailSerializer,
-                           'update': CommentUpdateSerializer,
-                           'partial_update': CommentUpdateSerializer,}
-    filter_backends = [DjangoFilterBackend]
-    filter_fields = ['post', ]
 
 
-    def get_serializer_class(self):
-        return self.actions_serializers.get(self.action, self.serializer_class)
+class CommentUpdateView(GenericViewSet, UpdateModelMixin, DestroyModelMixin):
+    permission_classes = [IsAuthenticated, IsOwner]
+    serializer_class = CommentUpdateSerializer
+    queryset = Comment.objects.all()
+
+
+
 

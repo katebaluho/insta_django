@@ -150,6 +150,7 @@ REST_FRAMEWORK = {
     "MAX_PAGE_SIZE": 100,
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
     )
 }
 

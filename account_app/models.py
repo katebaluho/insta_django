@@ -2,8 +2,6 @@ from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
 from django.db import models
 
-from media_app.models import Media
-
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=False, related_name="profile")
