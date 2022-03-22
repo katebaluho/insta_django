@@ -19,8 +19,19 @@ class LikesPostSerializer(LikesSerializer):
         model = Like
         exclude = ('user', 'comment',)
 
+    def validate(self, data):
+        if data["user"] == data["post"].user:
+            raise serializers.ValidationError("No like permission")
+        return data
+
 
 class LikesCommentSerializer(LikesSerializer):
     class Meta:
         model = Like
         exclude = ('user', 'post',)
+
+    def validate(self, data):
+        print(data)
+        if data["user"] == data["comment"].user:
+            raise serializers.ValidationError("No like permission")
+        return data

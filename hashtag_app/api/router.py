@@ -4,4 +4,4 @@ from .views.hashtags import HashtagsView
 
 api_router = routers.DefaultRouter()
 
-api_router.register('hashtag', HashtagsView)
+api_router.register('', HashtagsView)
